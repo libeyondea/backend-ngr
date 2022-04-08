@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Resources\PostCollection;
 use App\Models\Post;
 use App\Traits\ApiResponser;

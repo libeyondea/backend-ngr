@@ -24,4 +24,9 @@ class Post extends Model
     {
         return $this->hasMany(PostTranslations::class, 'post_id', 'id');
     }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image ? config('app.img_url') . '/' . $this->image : config('app.img_url') . '/' . 'default-image.png';
+    }
 }
