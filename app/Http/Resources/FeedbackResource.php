@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\Traits\Language;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class FeedbackResource extends JsonResource
 {
     use Language;
     /**
@@ -19,11 +19,10 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
-            'parent_id' => $this->parent_id,
+            'email' => $this->email,
+            'content' => $this->content,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'children_categories' => new CategoryCollection($this->childrenCategories),
         ];
     }
 }

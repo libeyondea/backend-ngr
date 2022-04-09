@@ -4,7 +4,7 @@ namespace App\Traits;
 
 trait Language
 {
-    public function lang(string $lang)
+    public function lang($lang)
     {
         if ($lang == 'en') {
             $lang = 'en';

@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Traits\Language;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TagResource extends JsonResource
 {
+    use Language;
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +16,12 @@ class TagResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+        ];
     }
 }

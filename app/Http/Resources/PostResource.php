@@ -29,6 +29,7 @@ class PostResource extends JsonResource
             'updated_at' => $this->updated_at,
             'user' => new UserResource($this->user),
             'category' => new CategoryResource($this->category),
+            'tags' => new TagCollection($this->tags),
         ];
     }
 }
