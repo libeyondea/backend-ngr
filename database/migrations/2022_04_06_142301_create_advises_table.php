@@ -15,7 +15,7 @@ class CreateAdvisesTable extends Migration
     {
         Schema::create('advises', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->string('name');
             $table->string('email');
             $table->string('phone_number');
             $table->text('content');
