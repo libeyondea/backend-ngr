@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdviseController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -38,3 +41,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/feedback', [FeedbackController::class, 'index']);
