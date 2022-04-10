@@ -11,39 +11,39 @@ use Illuminate\Support\Arr;
 
 class AuthController extends Controller
 {
-    use ApiResponser;
+	use ApiResponser;
 
-    public function signin(Request $request)
-    {
-        $credentials = $request->only(['user_name', 'password']);
+	public function signin(Request $request)
+	{
+		$credentials = $request->only(['user_name', 'password']);
 
-        if (!auth()->attempt(Arr::add($credentials, 'status', 'active'))) {
-            return $this->respondBadRequest('Invalid credentials');
-        }
+		if (!auth()->attempt(Arr::add($credentials, 'status', 'active'))) {
+			return $this->respondBadRequest('Invalid credentials');
+		}
 
-        $tokenResult = auth()->user()->createToken('Personal Access Token');
+		$tokenResult = auth()->user()->createToken('Personal Access Token');
 
-        return $this->respondSuccess([
-            'token' => $tokenResult->plainTextToken
-        ]);
-    }
+		return $this->respondSuccess([
+			'token' => $tokenResult->plainTextToken
+		]);
+	}
 
-    public function signup(SignupAuthRequest $request)
-    {
-        $userData = $request->merge(['role' => 'viewer', 'status' => 'inactive', 'avatar' => null])->all();
-        $user = User::create($userData);
-        return $this->respondSuccess(new UserResource($user));
-    }
+	public function signup(SignupAuthRequest $request)
+	{
+		$userData = $request->merge(['role' => 'viewer', 'status' => 'inactive', 'avatar' => null])->all();
+		$user = User::create($userData);
+		return $this->respondSuccess(new UserResource($user));
+	}
 
-    public function signout()
-    {
-        auth()->user()->tokens()->delete();
-        return $this->respondSuccess();
-    }
+	public function signout()
+	{
+		auth()->user()->tokens()->delete();
+		return $this->respondSuccess();
+	}
 
-    public function me()
-    {
-        $user = User::findOrFail(auth()->user()->id);
-        return $this->respondSuccess(new UserResource($user));
-    }
+	public function me()
+	{
+		$user = User::findOrFail(auth()->user()->id);
+		return $this->respondSuccess(new UserResource($user));
+	}
 }

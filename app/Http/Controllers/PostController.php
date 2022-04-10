@@ -3,18 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostResource;
+use App\Models\Category;
 use App\Models\Post;
 use App\Traits\ApiResponser;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    use ApiResponser;
+	use ApiResponser;
 
-    public function index()
-    {
-        $posts = new Post();
-        $postsCount = $posts->get()->count();
-        $posts = $posts->pagination();
-        return $this->respondSuccessWithPagination(new PostCollection($posts), $postsCount);
-    }
+	public function index(Request $request)
+	{
+		$posts = new Post();
+
+		if ($request->has('tag')) {
+			$posts = $posts->whereHas('tags', function ($q) use ($request) {
+				$q->where('slug', $request->tag);
+			});
+		} elseif ($request->has('category')) {
+			$posts = $posts->whereHas('category', function ($q) use ($request) {
+				$q->whereIn('slug', Category::ancestorsAndSelf(Category::where('slug', $request->category)->first()->id)->pluck('slug'));
+			});
+		}
+
+		$postsCount = $posts->get()->count();
+		$posts = $posts->pagination();
+		return $this->respondSuccessWithPagination(new PostCollection($posts), $postsCount);
+	}
+
+	public function show($slug)
+	{
+		$post = Post::where('slug', $slug)->firstOrFail();
+		return $this->respondSuccess(new PostResource($post));
+	}
 }
