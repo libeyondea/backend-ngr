@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\UploadImageRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UploadImageRequest;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;

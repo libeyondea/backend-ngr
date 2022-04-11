@@ -25,7 +25,6 @@ class CategoryResource extends JsonResource
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
 			'children' => new CategoryCollection($this->childrenCategories),
-			'test' => Category::ancestorsAndSelf(Category::where('slug', 'du-hoc-canada')->first()->id)->pluck('slug'),
 		];
 	}
 }

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdviseController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\FeedbackController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Api\AdviseController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\FeedbackController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{slug}', [PostController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/tags', [TagController::class, 'index']);
 
 Route::get('/feedback', [FeedbackController::class, 'index']);
 
