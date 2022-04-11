@@ -14,6 +14,6 @@ class PostTranslationSeeder extends Seeder
 	 */
 	public function run()
 	{
-		PostTranslation::factory(150)->create();
+		PostTranslation::factory(100)->create();
 	}
 }

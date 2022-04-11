@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
 			UserSeeder::class,
 			LanguageSeeder::class,
 			CategorySeeder::class,
+			TagSeeder::class,
 			PostSeeder::class,
-			PostTranslationSeeder::class
+			PostTranslationSeeder::class,
+			PostTagSeeder::class,
 		]);
 	}
 }

@@ -21,9 +21,11 @@ class PostController extends Controller
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {
 				$q->where('slug', $request->tag);
 			});
-		} elseif ($request->has('category')) {
+		}
+		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
-				$q->whereIn('slug', Category::ancestorsAndSelf(Category::where('slug', $request->category)->first()->id)->pluck('slug'));
+				$descendantCategories = Category::where('slug', $request->category)->first();
+				$q->whereIn('slug', Category::descendantsAndSelf($descendantCategories ? $descendantCategories->id : null)->pluck('slug'));
 			});
 		}
 

@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
 		Schema::create('posts', function (Blueprint $table) {
 			$table->id();
 			$table->foreignId('user_id')->constrained('users');
+			$table->foreignId('category_id')->constrained('categories');
 			$table->string('slug')->unique();
 			$table->string('image')->nullable();
 			$table->enum('status', ['publish', 'pending', 'draft', 'trash'])->default('draft');
