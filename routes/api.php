@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdviseController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PostController;
@@ -22,3 +23,5 @@ Route::get('/posts/{slug}', [PostController::class, 'show']);
 Route::get('/categories', [CategoryController::class, 'index']);
 
 Route::get('/feedback', [FeedbackController::class, 'index']);
+
+Route::post('/advise', [AdviseController::class, 'store']);

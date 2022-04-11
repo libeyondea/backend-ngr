@@ -8,5 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Advise extends Model
 {
-    use HasFactory, PaginationScope;
+	use HasFactory, PaginationScope;
+
+	protected $fillable = [
+		'name',
+		'email',
+		'phone_number',
+		'content',
+	];
 }
