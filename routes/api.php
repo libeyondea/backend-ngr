@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\TagController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/tags', [TagController::class, 'index']);
 Route::get('/feedback', [FeedbackController::class, 'index']);
 
 Route::post('/advise', [AdviseController::class, 'store']);
+
+Route::get('/search', [SearchController::class, 'search']);
