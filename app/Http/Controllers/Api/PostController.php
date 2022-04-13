@@ -16,7 +16,7 @@ class PostController extends Controller
 
 	public function index(Request $request)
 	{
-		$posts = new Post();
+		$posts = Post::where('status', 'publish');
 
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('role:owner');
 
 	Route::post('/images/upload', [ImageController::class, 'upload']);
+
+	Route::get('/posts', [PostController::class, 'index']);
+	Route::get('/posts/{id}', [PostController::class, 'show']);
+	Route::post('/posts', [PostController::class, 'store']);
+	Route::put('/posts/{id}', [PostController::class, 'update']);
+	Route::delete('/posts/{id}', [PostController::class, 'destroy']);
 });

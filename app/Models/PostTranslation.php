@@ -9,6 +9,14 @@ class PostTranslation extends Model
 {
 	use HasFactory;
 
+	protected $fillable = [
+		'title',
+		'content',
+		'excerpt',
+		'language_id',
+		'post_id',
+	];
+
 	public function post()
 	{
 		return $this->belongsTo(Post::class, 'post_id', 'id');

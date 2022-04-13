@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\CustomFormRequest;
 
-class StorePostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
 	use CustomFormRequest;
 
@@ -22,7 +22,7 @@ class StorePostRequest extends FormRequest
 			'translations.*.excerpt' => 'required|string|max:666',
 			'translations.*.content' => 'required|string|max:60000',
 			'translations.*.language_id' => 'required|integer',
-			'image' => 'required|string|max:255',
+			'image' => 'nullable|string|max:255',
 			'status' => 'required|string|in:publish,pending,draft,trash',
 			'category_id' => 'required|integer',
 			'tags' => 'required|array|min:1|max:66',
