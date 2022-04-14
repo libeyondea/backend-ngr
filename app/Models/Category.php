@@ -11,6 +11,12 @@ class Category extends Model
 {
 	use HasFactory, PaginationScope, NodeTrait;
 
+	protected $fillable = [
+			'name',
+			'slug',
+			'parent_id',
+	];
+
 	public function posts()
 	{
 		return $this->hasMany(Post::class, 'category_id', 'id');
