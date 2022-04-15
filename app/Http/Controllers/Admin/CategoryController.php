@@ -24,9 +24,15 @@ class CategoryController extends Controller
         $categoriesCount = $categories->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
 		return $this->respondSuccessWithPagination(new CategoryCollection($categories), $categoriesCount);
-    }
+	}
 
-    public function store(StoreCategoryRequest $request)
+	public function show($id)
+	{
+		$category = Category::findOrFail($id);
+		return $this->respondSuccess(new CategoryResource($category));
+	}
+
+	public function store(StoreCategoryRequest $request)
 	{
 		$categoryData = $request->merge([
 			'slug' => Category::where('slug', Str::slug($request->name, '-'))->exists() ? Str::slug($request->name, '-') . '-' .  Str::lower(Str::random(6)) : Str::slug($request->name, '-'),
@@ -35,17 +41,17 @@ class CategoryController extends Controller
 		return $this->respondSuccess(new CategoryResource($category));
 	}
 
-    public function update(UpdateCategoryRequest $request, $id)
-    {
-        $categoryData = $request->merge([
-            'slug' => Category::where('slug', Str::slug($request->name, '-'))->where('id', '!=', $id)->exists() ? Str::slug($request->name, '-') . '-' .  Str::lower(Str::random(6)) : Str::slug($request->name, '-'),
-        ])->all();
+	public function update(UpdateCategoryRequest $request, $id)
+	{
+		$categoryData = $request->merge([
+			'slug' => Category::where('slug', Str::slug($request->name, '-'))->where('id', '!=', $id)->exists() ? Str::slug($request->name, '-') . '-' .  Str::lower(Str::random(6)) : Str::slug($request->name, '-'),
+		])->all();
 		$category = Category::findOrFail($id);
-        $category->update($categoryData);
-        return $this->respondSuccess(new CategoryResource($category));
-    }
+		$category->update($categoryData);
+		return $this->respondSuccess(new CategoryResource($category));
+	}
 
-    public function destroy($id)
+	public function destroy($id)
 	{
 		$category = Category::findOrFail($id);
 		$category->delete();
