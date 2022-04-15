@@ -18,6 +18,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = new Category();
+        if ($request->has('q')) {
+			$categories = $categories->where('name', 'like', '%' . $request->q . '%');
+		}
         $categoriesCount = $categories->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
 		return $this->respondSuccessWithPagination(new CategoryCollection($categories), $categoriesCount);
