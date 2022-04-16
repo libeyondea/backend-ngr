@@ -18,13 +18,11 @@ class CategoryResource extends JsonResource
 		return [
 			'id' => $this->id,
 			'parent_id' => $this->parent_id,
-			'_lft' => $this->_lft,
-			'_rgt' => $this->_rgt,
 			'name' => $this->name,
 			'slug' => $this->slug,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'children' => new CategoryCollection($this->childrenCategories),
+			'children' => new CategoryCollection($this->children),
 		];
 	}
 }

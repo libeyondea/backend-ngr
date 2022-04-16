@@ -11,9 +11,14 @@ class CategoryController extends Controller
 {
 	use ApiResponser;
 
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 	public function index()
 	{
-		$categories = new Category();
+		$categories = Category::translationAndFilter('categoryTranslations');
 		$categoriesCount = $categories->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
 		return $this->respondSuccessWithPagination(new CategoryCollection($categories), $categoriesCount);

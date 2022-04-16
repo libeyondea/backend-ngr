@@ -1,0 +1,118 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\CategoryTranslation;
+use Illuminate\Database\Seeder;
+
+class CategoryTranslationSeeder extends Seeder
+{
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return vocategory_id
+	 */
+	public function run()
+	{
+		$categoryTranslations = [
+			['category_id' => 1, 'language_id' => 1, 'name' => 'Du Học', 'slug' => 'du-hoc'],
+			['category_id' => 1, 'language_id' => 2, 'name' => 'Study Abroad', 'slug' => 'study-aborad'],
+
+			['category_id' => 2, 'language_id' => 1, 'name' => 'Du Học Canada', 'slug' => 'du-hoc-canada'],
+			['category_id' => 3, 'language_id' => 1, 'name' => 'Du Học Anh', 'slug' => 'du-hoc-anh'],
+			['category_id' => 4, 'language_id' => 1, 'name' => 'Du Học Mỹ', 'slug' => 'du-hoc-my'],
+			['category_id' => 5, 'language_id' => 1, 'name' => 'Du Học Úc', 'slug' => 'du-hoc-uc'],
+			['category_id' => 6, 'language_id' => 1, 'name' => 'Du Học New Zealand', 'slug' => 'du-hoc-new-zealand'],
+			['category_id' => 7, 'language_id' => 1, 'name' => 'Du Học Singapore', 'slug' => 'du-hoc-singapore'],
+			['category_id' => 8, 'language_id' => 1, 'name' => 'Du Học Phần Lan', 'slug' => 'du-hoc-phan-lan'],
+			['category_id' => 9, 'language_id' => 1, 'name' => 'Du Học Hà Lan', 'slug' => 'du-hoc-ha-lan'],
+			['category_id' => 10, 'language_id' => 1, 'name' => 'Du Học Thụy Sĩ', 'slug' => 'du-hoc-thuy-si'],
+			['category_id' => 11, 'language_id' => 1, 'name' => 'Du Học Malaysia', 'slug' => 'du-hoc-malaysia'],
+			['category_id' => 12, 'language_id' => 1, 'name' => 'Du Học Thái Lan', 'slug' => 'du-hoc-thai-lan'],
+			['category_id' => 13, 'language_id' => 1, 'name' => 'Du Học Đài Loan', 'slug' => 'du-hoc-dai-loan'],
+			['category_id' => 14, 'language_id' => 1, 'name' => 'Du Học Philippines', 'slug' => 'du-hoc-philippines'],
+
+			['category_id' => 15, 'language_id' => 1, 'name' => 'Các Trường Đại Học & Cao Đẳng Canada', 'slug' => 'cac-truong-dai-hoc-va-cao-dang-canada'],
+			['category_id' => 16, 'language_id' => 1, 'name' => 'Trung Học Canada', 'slug' => 'trung-hoc-canada'],
+			['category_id' => 17, 'language_id' => 1, 'name' => 'Visa Canada', 'slug' => 'visa-canada'],
+			['category_id' => 18, 'language_id' => 1, 'name' => 'Thông Tin Nước Canada', 'slug' => 'thong-tin-nuoc-canada'],
+
+			['category_id' => 19, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Anh Quốc', 'slug' => 'he-thong-cac-truong-anh-quoc'],
+			['category_id' => 20, 'language_id' => 1, 'name' => 'Visa Anh', 'slug' => 'visa-anh'],
+			['category_id' => 21, 'language_id' => 1, 'name' => 'Thông Tin Nước Anh', 'slug' => 'thong-tin-nuoc-anh'],
+
+			['category_id' => 22, 'language_id' => 1, 'name' => 'Các Trường Đại Học & Cao Đẳng Mỹ', 'slug' => 'cac-truong-dai-hoc-va-cao-dang-my'],
+			['category_id' => 23, 'language_id' => 1, 'name' => 'Trung Học Mỹ', 'slug' => 'trung-hoc-my'],
+			['category_id' => 24, 'language_id' => 1, 'name' => 'Visa Mỹ', 'slug' => 'visa-my'],
+			['category_id' => 25, 'language_id' => 1, 'name' => 'Thông Tin Nước Mỹ', 'slug' => 'thong-tin-nuoc-my'],
+
+			['category_id' => 26, 'language_id' => 1, 'name' => 'Các Trường Đại Học & Cao Đẳng Úc', 'slug' => 'cac-truong-dai-hoc-va-cao-dang-uc'],
+			['category_id' => 27, 'language_id' => 1, 'name' => 'Trung Học Úc', 'slug' => 'trung-hoc-uc'],
+			['category_id' => 28, 'language_id' => 1, 'name' => 'Visa Úc', 'slug' => 'visa-uc'],
+			['category_id' => 29, 'language_id' => 1, 'name' => 'Thông Tin Nước Úc', 'slug' => 'thong-tin-nuoc-uc'],
+
+			['category_id' => 30, 'language_id' => 1, 'name' => 'Các Trường Đại Học & Cao Đẳng New ZeaLand', 'slug' => 'cac-truong-dai-hoc-va-cao-dang-new-zealand'],
+			['category_id' => 31, 'language_id' => 1, 'name' => 'Visa New Zealand', 'slug' => 'visa-new-zealand'],
+			['category_id' => 32, 'language_id' => 1, 'name' => 'Thông Tin Nước New  Zealand', 'slug' => 'thong-tin-nuoc-new-zealand'],
+
+			['category_id' => 33, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Singapore', 'slug' => 'he-thong-cac-truong-singapore'],
+			['category_id' => 34, 'language_id' => 1, 'name' => 'Thông Tin Nước Singapore', 'slug' => 'thong-tin-nuoc-singapore'],
+
+			['category_id' => 35, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Phần Lan', 'slug' => 'he-thong-cac-truong-phan-lan'],
+			['category_id' => 36, 'language_id' => 1, 'name' => 'Visa Phần Lan', 'slug' => 'visa-phan-lan'],
+			['category_id' => 37, 'language_id' => 1, 'name' => 'Thông Tin Nước Phần Lan', 'slug' => 'thong-tin-nuoc-phan-lan'],
+
+			['category_id' => 38, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Hà Lan', 'slug' => 'he-thong-cac-truong-ha-lan'],
+			['category_id' => 39, 'language_id' => 1, 'name' => 'Visa Hà Lan', 'slug' => 'visa-ha-lan'],
+			['category_id' => 40, 'language_id' => 1, 'name' => 'Thông Tin Nước Hà Làn', 'slug' => 'thong-tin-nuoc-ha-lan'],
+
+			['category_id' => 41, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Thụy Sĩ', 'slug' => 'he-thong-cac-truong-thuy-si'],
+			['category_id' => 42, 'language_id' => 1, 'name' => 'Visa Thụy Sĩ', 'slug' => 'visa-thuy-si'],
+			['category_id' => 43, 'language_id' => 1, 'name' => 'Thông Tin Nước Thụy Sĩ', 'slug' => 'thong-tin-nuoc-thuy-si'],
+
+			['category_id' => 44, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Malaysia', 'slug' => 'he-thong-cac-truong-malaysia'],
+			['category_id' => 45, 'language_id' => 1, 'name' => 'Thông Tin Nước Malaysia', 'slug' => 'thong-tin-nuoc-malaysia'],
+
+			['category_id' => 46, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Thái Lan', 'slug' => 'he-thong-cac-truong-thai-lan'],
+			['category_id' => 47, 'language_id' => 1, 'name' => 'Thông Tin Nước Thái Lan', 'slug' => 'thong-tin-nuoc-thai-lan'],
+
+			['category_id' => 48, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Đài Loan', 'slug' => 'cac-truong-dai-loan'],
+			['category_id' => 49, 'language_id' => 1, 'name' => 'Visa Đài Loan', 'slug' => 'visa-dai-loan'],
+			['category_id' => 50, 'language_id' => 1, 'name' => 'Thông Tin Nước Đài Loan', 'slug' => 'thong-tin-nuoc-dai-loan'],
+
+			['category_id' => 51, 'language_id' => 1, 'name' => 'Hệ Thống Các Trường Philippines', 'slug' => 'he-thong-cac-truong-philippines'],
+			['category_id' => 52, 'language_id' => 1, 'name' => 'Thông Tin Nước Philippines', 'slug' => 'thong-tin-nuoc-philippines'],
+
+			['category_id' => 53, 'language_id' => 1, 'name' => 'Định Cư', 'slug' => 'dinh-cu'],
+			['category_id' => 54, 'language_id' => 1, 'name' => 'Định Cư Mỹ', 'slug' => 'dinh-cu-my'],
+			['category_id' => 55, 'language_id' => 1, 'name' => 'Định Cư Úc', 'slug' => 'dinh-cu-uc'],
+			['category_id' => 56, 'language_id' => 1, 'name' => 'Định Cư Canada', 'slug' => 'dinh-cu-canada'],
+
+			['category_id' => 57, 'language_id' => 1, 'name' => 'Học Bổng Du Học', 'slug' => 'hoc-bong-du-hoc'],
+			['category_id' => 58, 'language_id' => 1, 'name' => 'Học Bổng Canada', 'slug' => 'hong-bong-canada'],
+			['category_id' => 59, 'language_id' => 1, 'name' => 'Học Bổng Anh', 'slug' => 'hoc-bong-anh'],
+			['category_id' => 60, 'language_id' => 1, 'name' => 'Học Bổng Mỹ', 'slug' => 'hoc-bong-my'],
+			['category_id' => 61, 'language_id' => 1, 'name' => 'Học Bổng Úc', 'slug' => 'hoc-bong-uc'],
+			['category_id' => 62, 'language_id' => 1, 'name' => 'Học Bổng New Zealand', 'slug' => 'hoc-bong-zealand'],
+			['category_id' => 63, 'language_id' => 1, 'name' => 'Học Bổng Singapore', 'slug' => 'hoc-bong-singapore'],
+			['category_id' => 64, 'language_id' => 1, 'name' => 'Học Bổng Phần Lan', 'slug' => 'hoc-bong-phan-lan'],
+			['category_id' => 65, 'language_id' => 1, 'name' => 'Học Bổng Hà Lan', 'slug' => 'hoc-bong-ha-lan'],
+			['category_id' => 66, 'language_id' => 1, 'name' => 'Học Bổng Thụy Sĩ', 'slug' => 'hoc-bong-thuy-si'],
+
+			['category_id' => 67, 'language_id' => 1, 'name' => 'Chương Trình Đào Tạo', 'slug' => 'chuong-trinh-dao-tao'],
+			['category_id' => 68, 'language_id' => 1, 'name' => 'Luyện Thi Tiếng Anh', 'slug' => 'luyen-thi-tieng-anh'],
+			['category_id' => 69, 'language_id' => 1, 'name' => 'Luyện IELTS Du Học', 'slug' => 'luyen-ielts-du-hoc'],
+			['category_id' => 70, 'language_id' => 1, 'name' => 'Luyện Anh Văn Phỏng Vấn Xin Visa Mỹ', 'slug' => 'luyen-anh-van-phong-van-xin-visa-my'],
+			['category_id' => 71, 'language_id' => 1, 'name' => 'Dạy Anh Văn Du Lịch', 'slug' => 'day-anh-van-du-lich'],
+			['category_id' => 72, 'language_id' => 1, 'name' => 'Dạy Anh Văn Cho Người Sắp Định Cư', 'slug' => 'day-anh-van-cho-nguoi-sap-dinh-cu'],
+			['category_id' => 73, 'language_id' => 1, 'name' => 'Huấn Luyện Sinh Viên Thực Tập', 'slug' => 'huan-luyen-sinh-vien-thuc-tap'],
+			['category_id' => 74, 'language_id' => 1, 'name' => 'Huấn Luyện Nhân Sự', 'slug' => 'huan-luyen-nhan-su'],
+
+			['category_id' => 75, 'language_id' => 1, 'name' => 'Tin Tức', 'slug' => 'tin-tuc']
+		];
+
+		foreach ($categoryTranslations as $categoryTranslation) {
+			CategoryTranslation::create($categoryTranslation);
+		}
+	}
+}

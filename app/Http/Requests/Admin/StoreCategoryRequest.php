@@ -7,18 +7,18 @@ use App\Traits\CustomFormRequest;
 
 class StoreCategoryRequest extends FormRequest
 {
-    use CustomFormRequest;
+	use CustomFormRequest;
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'parent_id' => 'nullable|integer',
-        ];
-    }
+	/**
+	 * Get the validation rules that apply to the request.
+	 *
+	 * @return array
+	 */
+	public function rules()
+	{
+		return [
+			'name' => 'required|string|max:255',
+			'parent_id' => 'nullable|integer',
+		];
+	}
 }
