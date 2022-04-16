@@ -8,12 +8,11 @@ Authorization: Bearer 4|JJP7QRqV8ddkjA6p6hIa8PnsIwrUdN3thXL5wGyB
     "parent_id": 3
 }
 
-PUT http://127.0.0.1:8000/admin/categories/75 HTTP/1.1
+DELETE  http://127.0.0.1:8000/admin/tags/61 HTTP/1.1
 Content-Type: : application/json
 Accept: application/json
-Authorization: Bearer 5|HMQc9jOyFXuiQgDLnXCycZN4m3UCyRd5UCOJtEyt
+Authorization: Bearer 7|J3nmrn77xwkLRUH8sInWJpTIKE1kmjPzblheBaCp
 
 {
-    "name": "alan",
-    "parent_id": 3
+    "name": "dwaddaw d34r"
 }
