@@ -6,19 +6,45 @@ use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 use App\Http\Resources\PostCollection;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\TagCollection;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 
 class SearchController extends Controller
 {
 	use ApiResponser;
 
-	public function search(Request $request)
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function search(Request $request, $type = 'post')
 	{
-		$posts = Post::whereHas('postTranslations', function ($q) use ($request) {
-			$q->where('title', 'like', '%' . $request->q . '%');
-		});
-		$postsCount = $posts->get()->count();
-		$posts = $posts->pagination();
-		return $this->respondSuccessWithPagination(new PostCollection($posts), $postsCount);
+		$type = $request->get('type', $type);
+
+		if ($type == 'post') {
+			$models = Post::translationAndFilter('postTranslations', ['title', 'slug', 'excerpt']);
+			$modelsCount = $models->get()->count();
+			$models = $models->pagination();
+			$resources = new PostCollection($models);
+		} elseif ($type == 'category') {
+			$models = Category::translationAndFilter('categoryTranslations', ['name', 'slug']);
+			$modelsCount = $models->get()->count();
+			$models = $models->pagination();
+			$resources = new CategoryCollection($models);
+		} elseif ($type == 'tag') {
+			$models = Tag::where('name', 'like', '%' . $request->q . '%');
+			$modelsCount = $models->get()->count();
+			$models = $models->pagination();
+			$resources = new TagCollection($models);
+		} else {
+			$modelsCount = 0;
+			$resources = null;
+		}
+
+		return $this->respondSuccessWithPagination($resources, $modelsCount);
 	}
 }
