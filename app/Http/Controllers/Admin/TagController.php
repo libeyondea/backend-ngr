@@ -3,20 +3,34 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreTagRequest;
+use App\Http\Requests\Admin\UpdateTagRequest;
 use App\Http\Resources\TagCollection;
+use App\Http\Resources\TagResource;
 use App\Models\Tag;
 use App\Traits\ApiResponser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
 	use ApiResponser;
 
-	public function index()
+	public function index(Request $request)
 	{
 		$tags = new Tag();
+		if ($request->has('q')) {
+			$tags = $tags->where('name', 'like', '%' . $request->q . '%');
+		}
 		$tagsCount = $tags->get()->count();
 		$tags = $tags->pagination();
 		return $this->respondSuccessWithPagination(new TagCollection($tags), $tagsCount);
+	}
+
+	public function show($id)
+	{
+		$tag = Tag::findOrFail($id);
+		return $this->respondSuccess(new TagResource($tag));
 	}
 
 	public function store(StoreTagRequest $request)
