@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,4 +49,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::post('/categories', [CategoryController::class, 'store']);
 	Route::put('/categories/{id}', [CategoryController::class, 'update']);
 	Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+
+	Route::get('/tags', [TagController::class, 'index']);
+	Route::get('/tags/{id}', [TagController::class, 'show']);
+	Route::post('/tags', [TagController::class, 'store']);
+	Route::put('/tags/{id}', [TagController::class, 'update']);
+	Route::delete('/tags/{id}', [TagController::class, 'destroy']);
 });

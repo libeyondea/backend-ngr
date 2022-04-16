@@ -35,6 +35,7 @@ class PostTranslationFactory extends Factory
 			'post_id' => $post_id,
 			'language_id' => $language_id,
 			'title' => $title,
+			'slug' => Str::slug($title, '-') . '-' . Str::lower(Str::random(6)),
 			'excerpt' => $this->faker->paragraph(),
 			'content' => $this->faker->text(666),
 		];

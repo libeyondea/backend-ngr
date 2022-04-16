@@ -14,9 +14,14 @@ class PostController extends Controller
 {
 	use ApiResponser;
 
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
 	public function index(Request $request)
 	{
-		$posts = Post::where('status', 'publish');
+		$posts = Post::where('status', 'publish')->translationAndFilter('postTranslations');
 
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {

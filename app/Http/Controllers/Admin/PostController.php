@@ -81,7 +81,6 @@ class PostController extends Controller
 	public function store(StorePostRequest $request)
 	{
 		$postData = $request->merge([
-			'slug' => Str::slug($request->translations[0]['title'], '-') . '-' . Str::lower(Str::random(6)),
 			'user_id' => auth()->user()->id,
 		])->all();
 		$post = Post::create($postData);
@@ -91,6 +90,7 @@ class PostController extends Controller
 			$postTranslation->post_id = $post->id;
 			$postTranslation->language_id  = $translation['language_id'];
 			$postTranslation->title = $translation['title'];
+			$postTranslation->slug = Str::slug($translation['title'], '-') . '-' . Str::lower(Str::random(6));
 			$postTranslation->excerpt = $translation['excerpt'];
 			$postTranslation->content = $translation['content'];
 			$postTranslation->save();
@@ -130,6 +130,7 @@ class PostController extends Controller
 			$postTranslation = PostTranslation::where('post_id', $post->id)->where('language_id', $translation['language_id'])->first();
 			$postTranslation->update([
 				'title' => $translation['title'],
+				'slug' => Str::slug($translation['title'], '-') . '-' . Str::lower(Str::random(6)),
 				'excerpt' => $translation['excerpt'],
 				'content' => $translation['content'],
 			]);

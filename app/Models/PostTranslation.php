@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\CustomScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PostTranslation extends Model
 {
-	use HasFactory;
+	use HasFactory, CustomScope;
 
 	protected $fillable = [
 		'title',
+		'slug',
 		'content',
 		'excerpt',
 		'language_id',

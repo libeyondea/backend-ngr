@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
 			$table->id();
 			$table->foreignId('user_id')->constrained('users');
 			$table->foreignId('category_id')->constrained('categories');
-			$table->string('slug')->unique();
 			$table->string('image')->nullable();
 			$table->enum('status', ['publish', 'pending', 'draft', 'trash'])->default('draft');
 			$table->timestamps();

@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use App\Traits\Languages;
-use App\Traits\PaginationScope;
+use App\Traits\CustomScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-	use HasFactory, PaginationScope, Languages;
+	use HasFactory, CustomScope;
 
 	protected $fillable = [
 		'slug',
@@ -46,16 +45,21 @@ class Post extends Model
 
 	public function getTitleAttribute()
 	{
-		return $this->translation('title');
+		return $this->postTranslations->first()->title ?? null;
+	}
+
+	public function getSlugAttribute()
+	{
+		return $this->postTranslations->first()->slug ?? null;
 	}
 
 	public function getExcerptAttribute()
 	{
-		return $this->translation('excerpt');
+		return $this->postTranslations->first()->excerpt ?? null;
 	}
 
 	public function getContentAttribute()
 	{
-		return $this->translation('content');
+		return $this->postTranslations->first()->content ?? null;
 	}
 }
