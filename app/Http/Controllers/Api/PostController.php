@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PostCollection;
-use App\Http\Resources\PostResource;
+use App\Http\Resources\Api\Post\PostCollection;
+use App\Http\Resources\Api\Post\PostResource;
 use App\Models\Category;
+use App\Models\CategoryTranslation;
 use App\Models\Post;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -23,6 +24,8 @@ class PostController extends Controller
 	{
 		$posts = Post::where('status', 'publish')->translationAndFilter('postTranslations');
 
+		//return response()->json($posts->get());
+
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {
 				$q->where('slug', $request->tag);
@@ -30,8 +33,9 @@ class PostController extends Controller
 		}
 		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
-				$descendantCategories = Category::where('slug', $request->category)->first();
-				$q->whereIn('slug', Category::descendantsAndSelf($descendantCategories ? $descendantCategories->id : null)->pluck('slug'));
+				$categoryTranslation = CategoryTranslation::where('slug', $request->category)->first();
+				$descendantCategory = Category::where('id', $descendantCategories->category_id)->translationAndFilter('categoryTranslations')->first();
+				$q->whereIn('id', Category::descendantsOf($test ? $descendantCategory->id : null)->pluck('id'));
 			});
 		}
 
