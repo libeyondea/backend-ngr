@@ -26,10 +26,13 @@ class CategoryTranslation extends Model
 		return $this->belongsTo(Language::class, 'language_id', 'id');
 	}
 
-	public function setSlugAttribute()
+	public function setNameAttribute($value)
 	{
-		$this->attributes['slug'] = Category::where('slug', Str::slug($this->name, '-'))->exists()
-			? Str::slug($this->name, '-') . '-' .  Str::lower(Str::random(6))
-			: Str::slug($this->name, '-');
+		$this->attributes['name'] = $value;
+		$this->attributes['slug'] = CategoryTranslation::where('slug', Str::slug($value, '-'))->exists()
+		 && CategoryTranslation::where('category_id', CategoryTranslation::where('slug', Str::slug($value, '-')->first()->category_id))->exists()
+		 && CategoryTranslation::where('language_id',  CategoryTranslation::where('slug', Str::slug($value, '-')->first()->language_id))->exists()
+			? Str::slug($value, '-') . '-' .  Str::lower(Str::random(6))
+			: Str::slug($value, '-');
 	}
 }

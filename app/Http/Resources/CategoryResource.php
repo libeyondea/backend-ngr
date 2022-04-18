@@ -22,7 +22,7 @@ class CategoryResource extends JsonResource
 			'slug' => $this->slug,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'children' => new CategoryCollection($this->children),
+			'children' => new CategoryCollection(Category::translationAndFilter('categoryTranslations')->descendantsOf($this->id)->toTree()),
 		];
 	}
 }
