@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
 	use ApiResponser;
+
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -21,8 +21,10 @@ class AuthController extends Controller
 		if (!auth()->attempt(Arr::add($credentials, 'status', 'active'))) {
 			return $this->respondBadRequest('Invalid credentials');
 		}
+		/** @var \App\Models\User $user **/
+		$user = auth()->user();
 
-		$tokenResult = auth()->user()->createToken('Personal Access Token');
+		$tokenResult = $user->createToken('Personal Access Token');
 
 		return $this->respondSuccess([
 			'token' => $tokenResult->plainTextToken
@@ -38,7 +40,9 @@ class AuthController extends Controller
 
 	public function signout()
 	{
-		auth()->user()->tokens()->delete();
+		/** @var \App\Models\User $user **/
+		$user = auth()->user();
+		$user->tokens()->delete();
 		return $this->respondSuccess();
 	}
 
