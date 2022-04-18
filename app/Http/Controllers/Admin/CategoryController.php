@@ -43,6 +43,9 @@ class CategoryController extends Controller
 			CategoryTranslation::create([
 				'category_id' => $category->id,
 				'name' => $translation['name'],
+				'slug' => CategoryTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['name'], '-'))->exists()
+					? Str::slug($translation['name'], '-') . '-' .  Str::lower(Str::random(6))
+					: Str::slug($translation['name'], '-'),
 				'language_id' => $translation['language_id'],
 			]);
 		}
@@ -60,7 +63,7 @@ class CategoryController extends Controller
 			$categoryTranslation = CategoryTranslation::where('category_id', $category->id)->where('language_id', $translation['language_id'])->first();
 			$categoryTranslation->update([
 				'name' => $translation['name'],
-				'slug' =>  CategoryTranslation::where('category_id', '!=', $category->id)->where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['name'], '-'))->exists()
+				'slug' => CategoryTranslation::where('category_id', '!=', $category->id)->where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['name'], '-'))->exists()
 					? Str::slug($translation['name'], '-') . '-' .  Str::lower(Str::random(6))
 					: Str::slug($translation['name'], '-')
 			]);

@@ -8,11 +8,21 @@ Authorization: Bearer 4|JJP7QRqV8ddkjA6p6hIa8PnsIwrUdN3thXL5wGyB
     "parent_id": 3
 }
 
-DELETE  http://127.0.0.1:8000/admin/tags/61 HTTP/1.1
+PUT  http://127.0.0.1:8000/admin/categories/96 HTTP/1.1
 Content-Type: : application/json
 Accept: application/json
-Authorization: Bearer 7|J3nmrn77xwkLRUH8sInWJpTIKE1kmjPzblheBaCp
+Authorization: Bearer 2|ptHiolI07Ovv9U6Z5x6hRz6iO5l3R4tsmaDRHf79
 
 {
-    "name": "dwaddaw d34r"
+    "translations": [
+        {
+            "name": "test 1",
+            "language_id": 1
+        },
+        {
+            "name": "tien tuan",
+            "language_id": 2
+        }
+    ],
+	"parent_id": 3
 }
