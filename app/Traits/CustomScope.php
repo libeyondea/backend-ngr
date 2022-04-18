@@ -16,7 +16,7 @@ trait CustomScope
 		}
 
 		$translation = $query->withAndWhereHas($relation, function ($q) use ($keys, $language) {
-			if (request()->q) {
+			if (request()->q && is_array($keys)) {
 				$q->where(function ($subQuery) use ($keys) {
 					foreach ($keys as $key) {
 						$subQuery->orWhere($key, 'like', '%' . request()->q . '%');

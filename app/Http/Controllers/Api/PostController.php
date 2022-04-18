@@ -24,18 +24,17 @@ class PostController extends Controller
 	{
 		$posts = Post::where('status', 'publish')->translationAndFilter('postTranslations');
 
-		//return response()->json($posts->get());
-
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {
 				$q->where('slug', $request->tag);
 			});
 		}
+
 		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
 				$categoryTranslation = CategoryTranslation::where('slug', $request->category)->first();
-				$descendantCategory = Category::where('id', $descendantCategories->category_id)->translationAndFilter('categoryTranslations')->first();
-				$q->whereIn('id', Category::descendantsOf($test ? $descendantCategory->id : null)->pluck('id'));
+				$descendantCategory = Category::where('id', $categoryTranslation->category_id)->translationAndFilter('categoryTranslations')->first();
+				$q->whereIn('id', Category::descendantsOf($descendantCategory ? $descendantCategory->id : null)->pluck('id'));
 			});
 		}
 

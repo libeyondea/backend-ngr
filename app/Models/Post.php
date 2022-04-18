@@ -11,7 +11,6 @@ class Post extends Model
 	use HasFactory, CustomScope;
 
 	protected $fillable = [
-		'slug',
 		'image',
 		'status',
 		'category_id',

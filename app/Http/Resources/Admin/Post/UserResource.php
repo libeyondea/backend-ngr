@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Admin;
+namespace App\Http\Resources\Admin\Post;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class UserResource extends JsonResource
 {
 	/**
 	 * Transform the resource into an array.
@@ -16,11 +16,14 @@ class CategoryResource extends JsonResource
 	{
 		return [
 			'id' => $this->id,
-			'parent_id' => $this->parent_id,
-			'translations' => $this->categoryTranslations,
+			'first_name' => $this->first_name,
+			'last_name' => $this->last_name,
+			'user_name' => $this->user_name,
+			'avatar_url' => $this->avatar_url,
+			'email' => $this->email,
+			'email_verified_at' => $this->email_verified_at,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'children' => new CategoryCollection($this->children),
 		];
 	}
 }

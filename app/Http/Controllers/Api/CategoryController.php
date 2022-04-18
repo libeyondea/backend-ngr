@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\Api\Category\CategoryCollection;
 use App\Models\Category;
 use App\Traits\ApiResponser;
 

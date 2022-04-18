@@ -17,7 +17,9 @@ class StoreCategoryRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name' => 'required|string|max:255',
+			'translations' => 'required|array|min:1|max:10',
+			'translations.*.name' => 'required|string|max:255',
+			'translations.*.language_id' => 'required|integer',
 			'parent_id' => 'nullable|integer',
 		];
 	}
