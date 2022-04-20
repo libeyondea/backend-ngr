@@ -106,7 +106,15 @@ class CategorySeeder extends Seeder
 			['id' => 73, 'parent_id' => 67],
 			['id' => 74, 'parent_id' => 67],
 
-			['id' => 75, 'parent_id' => NULL]
+			['id' => 75, 'parent_id' => NULL],
+			['id' => 76, 'parent_id' => 75],
+			['id' => 77, 'parent_id' => 75],
+			['id' => 78, 'parent_id' => 75],
+			['id' => 79, 'parent_id' => 75],
+
+			['id' => 80, 'parent_id' => 77],
+			['id' => 81, 'parent_id' => 77],
+			['id' => 82, 'parent_id' => 77],
 		];
 
 		foreach ($categories as $category) {

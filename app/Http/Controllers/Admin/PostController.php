@@ -81,20 +81,32 @@ class PostController extends Controller
 	 */
 	public function store(StorePostRequest $request)
 	{
+		foreach ($request->translations as $key => $translation) {
+			if (PostTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['title'], '-'))->exists()) {
+				return $this->respondError(
+					'The given data was invalid.',
+					[
+						'translations.' . $key . '.slug' => ['The slug has already been taken.']
+
+					]
+				);
+			}
+		}
+
 		$postData = $request->merge([
 			'user_id' => auth()->user()->id,
 		])->all();
 		$post = Post::create($postData);
 
 		foreach ($request->translations as $translation) {
-			$postTranslation = new PostTranslation();
-			$postTranslation->post_id = $post->id;
-			$postTranslation->language_id  = $translation['language_id'];
-			$postTranslation->title = $translation['title'];
-			$postTranslation->slug = Str::slug($translation['title'], '-') . '-' . Str::lower(Str::random(6));
-			$postTranslation->excerpt = $translation['excerpt'];
-			$postTranslation->content = $translation['content'];
-			$postTranslation->save();
+			PostTranslation::create([
+				'post_id' => $post->id,
+				'language_id' => $translation['language_id'],
+				'title' => $translation['title'],
+				'slug' => Str::slug($translation['slug'] ?? $translation['title'], '-'),
+				'excerpt' => $translation['excerpt'],
+				'content' => $translation['content'],
+			]);
 		}
 
 		foreach ($request->tags as $tag) {
@@ -121,6 +133,18 @@ class PostController extends Controller
 	 */
 	public function update(UpdatePostRequest $request, $id)
 	{
+		foreach ($request->translations as $key => $translation) {
+			if (PostTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['title'], '-'))->where('post_id', '!=', $id)->exists()) {
+				return $this->respondError(
+					'The given data was invalid.',
+					[
+						'translations.' . $key . '.slug' => ['The slug has already been taken.']
+
+					]
+				);
+			}
+		}
+		
 		$postData = $request->merge([
 			'user_id' => auth()->user()->id,
 		])->all();
@@ -131,7 +155,7 @@ class PostController extends Controller
 			$postTranslation = PostTranslation::where('post_id', $post->id)->where('language_id', $translation['language_id'])->first();
 			$postTranslation->update([
 				'title' => $translation['title'],
-				'slug' => Str::slug($translation['title'], '-') . '-' . Str::lower(Str::random(6)),
+				'slug' => Str::slug($translation['slug'] ?? $translation['title'], '-'),
 				'excerpt' => $translation['excerpt'],
 				'content' => $translation['content'],
 			]);

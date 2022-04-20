@@ -22,7 +22,8 @@ class CreatePostTranslationsTable extends Migration
 			$table->string('excerpt', 666);
 			$table->text('content');
 			$table->unique(['post_id', 'language_id']);
-			$table->unique(['post_id', 'language_id', 'slug']);
+			$table->unique(['slug', 'language_id']);
+			$table->unique(['post_id', 'slug', 'language_id']);
 			$table->timestamps();
 		});
 	}

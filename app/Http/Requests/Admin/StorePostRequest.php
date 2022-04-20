@@ -19,6 +19,7 @@ class StorePostRequest extends FormRequest
 		return [
 			'translations' => 'required|array|min:1|max:10',
 			'translations.*.title' => 'required|string|max:255',
+			'translations.*.slug' => 'nullable|string|max:255',
 			'translations.*.excerpt' => 'required|string|max:666',
 			'translations.*.content' => 'required|string|max:60000',
 			'translations.*.language_id' => 'required|integer',
