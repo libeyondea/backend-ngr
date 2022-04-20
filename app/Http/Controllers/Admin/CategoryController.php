@@ -36,16 +36,26 @@ class CategoryController extends Controller
 
 	public function store(StoreCategoryRequest $request)
 	{
+		foreach ($request->translations as $key => $translation) {
+			if (CategoryTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['name'], '-'))->exists()) {
+				return $this->respondError(
+					'The given data was invalid.',
+					[
+						'translations.' . $key . '.slug' => ['The slug has already been taken.']
+
+					]
+				);
+			}
+		}
+
 		$categoryData = $request->all();
 		$category = Category::create($categoryData);
 
-		foreach ($request->translations as $translation) {
+		foreach ($request->translations as $key => $translation) {
 			CategoryTranslation::create([
 				'category_id' => $category->id,
 				'name' => $translation['name'],
-				'slug' => CategoryTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['name'], '-'))->exists()
-					? Str::slug($translation['name'], '-') . '-' .  Str::lower(Str::random(6))
-					: Str::slug($translation['name'], '-'),
+				'slug' => Str::slug($translation['slug'] ?? $translation['name'], '-'),
 				'language_id' => $translation['language_id'],
 			]);
 		}
@@ -55,17 +65,27 @@ class CategoryController extends Controller
 
 	public function update(UpdateCategoryRequest $request, $id)
 	{
+		foreach ($request->translations as $key => $translation) {
+			if (CategoryTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['name'], '-'))->where('category_id', '!=', $id)->exists()) {
+				return $this->respondError(
+					'The given data was invalid.',
+					[
+						'translations.' . $key . '.slug' => ['The slug has already been taken.']
+
+					]
+				);
+			}
+		}
+
 		$categoryData = $request->all();
 		$category = Category::findOrFail($id);
 		$category->update($categoryData);
 
-		foreach ($request->translations as $translation) {
+		foreach ($request->translations as $key => $translation) {
 			$categoryTranslation = CategoryTranslation::where('category_id', $category->id)->where('language_id', $translation['language_id'])->first();
 			$categoryTranslation->update([
 				'name' => $translation['name'],
-				'slug' => CategoryTranslation::where('category_id', '!=', $category->id)->where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['name'], '-'))->exists()
-					? Str::slug($translation['name'], '-') . '-' .  Str::lower(Str::random(6))
-					: Str::slug($translation['name'], '-')
+				'slug' => Str::slug($translation['slug'] ?? $translation['name'], '-'),
 			]);
 		}
 

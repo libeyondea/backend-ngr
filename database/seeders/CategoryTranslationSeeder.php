@@ -15,7 +15,7 @@ class CategoryTranslationSeeder extends Seeder
 	public function run()
 	{
 		$categoryTranslations = [
-			['category_id' => 1, 'language_id' => 1, 'name' => 'Du Học'],
+			['category_id' => 1, 'language_id' => 1, 'name' => 'Du Học', 'slug' => 'du-hoc'],
 			['category_id' => 1, 'language_id' => 2, 'name' => 'Study Abroad'],
 
 			['category_id' => 2, 'language_id' => 1, 'name' => 'Du Học Canada'],

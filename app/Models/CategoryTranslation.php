@@ -11,8 +11,8 @@ class CategoryTranslation extends Model
 	use HasFactory;
 
 	protected $fillable = [
-		'slug',
 		'name',
+		'slug',
 		'language_id',
 		'category_id',
 	];

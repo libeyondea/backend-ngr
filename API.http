@@ -1,3 +1,12 @@
+POST  http://127.0.0.1:8000/admin/auth/signin HTTP/1.1
+Content-Type: : application/json
+Accept: application/json
+
+{
+    "user_name": "admin",
+	"password": "admin"
+}
+
 DELETE  http://127.0.0.1:8000/admin/categories/76 HTTP/1.1
 Content-Type: : application/json
 Accept: application/json
@@ -8,21 +17,57 @@ Authorization: Bearer 4|JJP7QRqV8ddkjA6p6hIa8PnsIwrUdN3thXL5wGyB
     "parent_id": 3
 }
 
-PUT  http://127.0.0.1:8000/admin/categories/96 HTTP/1.1
+PUT  http://127.0.0.1:8000/admin/categories/93 HTTP/1.1
 Content-Type: : application/json
 Accept: application/json
-Authorization: Bearer 2|ptHiolI07Ovv9U6Z5x6hRz6iO5l3R4tsmaDRHf79
+Authorization: Bearer 1|XgwSLt2MRDa1x9XMJgLsJWnV7gNkRHWoDzdkuyMy
 
 {
     "translations": [
         {
-            "name": "test 1",
+            "name": "test 133sDSFS",
             "language_id": 1
         },
         {
-            "name": "tien tuan",
+            "name": "tien tuan 3DSF3S",
             "language_id": 2
         }
     ],
 	"parent_id": 3
+}
+
+POST  http://127.0.0.1:8000/admin/posts HTTP/1.1
+Content-Type: : application/json
+Accept: application/json
+Authorization: Bearer 4|5toij2t3ggRDrUMpKu13EvtpG1pqDIFXU5dnQouG
+
+{
+    "translations": [
+        {
+            "title": "hahah",
+            "excerpt": "hihi",
+            "content": "hoho",
+            "language_id": 1
+        },
+        {
+            "title": "dkmm",
+            "excerpt": "dkmmm",
+            "content": "dkmmm",
+            "language_id": 2
+        }
+    ],
+    "image": "dawdawd/da/vipro",
+    "status": "publish",
+    "category_id": 3,
+    "tags": [
+        {
+            "name": "vip"
+        },
+        {
+            "name": "dawd awd pro"
+        },
+        {
+            "name": "da da dad dddd"
+        }
+    ]
 }

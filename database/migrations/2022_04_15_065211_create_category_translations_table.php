@@ -20,7 +20,8 @@ class CreateCategoryTranslationsTable extends Migration
 			$table->string('name');
 			$table->string('slug');
 			$table->unique(['category_id', 'language_id']);
-			$table->unique(['category_id', 'language_id', 'slug']);
+			$table->unique(['slug', 'language_id']);
+			$table->unique(['category_id', 'slug', 'language_id']);
 			$table->timestamps();
 		});
 	}
