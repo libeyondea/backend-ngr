@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api\Advise;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TagResource extends JsonResource
+class AdviseResource extends JsonResource
 {
 	/**
 	 * Transform the resource into an array.
@@ -17,7 +17,9 @@ class TagResource extends JsonResource
 		return [
 			'id' => $this->id,
 			'name' => $this->name,
-			'slug' => $this->slug,
+			'email' => $this->email,
+			'phone_number' => $this->phone_number,
+			'content' => $this->content,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
 		];

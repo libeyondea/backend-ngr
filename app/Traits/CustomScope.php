@@ -29,6 +29,22 @@ trait CustomScope
 		return $translation;
 	}
 
+	public function scopeTranslation($query, $relation)
+	{
+		$language = new Language();
+		if (request()->lang == 'en') {
+			$language = $language->where('code', 'en')->firstOrFail();
+		} else {
+			$language = $language->where('code', 'vi')->firstOrFail();
+		}
+
+		$translation = $query->withAndWhereHas($relation, function ($q) use ($language) {
+			$q->where('language_id', $language->id);
+		});
+
+		return $translation;
+	}
+
 	public function scopeWithAndWhereHas($query, $relation, $constraint)
 	{
 		return $query->whereHas($relation, $constraint)->with([$relation => $constraint]);

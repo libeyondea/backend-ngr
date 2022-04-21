@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TagCollection;
+use App\Http\Resources\Api\Tag\TagCollection;
 use App\Models\Tag;
 use App\Traits\ApiResponser;
 

@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api\Feedback;
 
-use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class FeedbackResource extends JsonResource
 {
 	/**
 	 * Transform the resource into an array.
@@ -17,12 +16,11 @@ class CategoryResource extends JsonResource
 	{
 		return [
 			'id' => $this->id,
-			'parent_id' => $this->parent_id,
 			'name' => $this->name,
-			'slug' => $this->slug,
+			'email' => $this->email,
+			'content' => $this->content,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'children' => new CategoryCollection(Category::translationAndFilter('categoryTranslations')->descendantsOf($this->id)->toTree()),
 		];
 	}
 }

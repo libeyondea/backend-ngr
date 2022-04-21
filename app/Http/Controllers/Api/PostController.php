@@ -22,7 +22,7 @@ class PostController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$posts = Post::where('status', 'publish')->translationAndFilter('postTranslations');
+		$posts = Post::where('status', 'publish')->translation('postTranslations');
 
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {

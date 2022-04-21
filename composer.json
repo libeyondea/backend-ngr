@@ -51,6 +51,8 @@
 			"@php artisan key:generate --ansi"
 		],
 		"post-install-cmd": [
+			"php artisan cache:clear",
+			"php artisan config:cache",
 			"php artisan migrate:fresh --seed --force"
 		]
 	},

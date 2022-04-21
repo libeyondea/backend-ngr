@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api\Advise;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class TagCollection extends ResourceCollection
+class AdviseCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,6 @@ class TagCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return TagResource::collection($this->collection);
+        return AdviseResource::collection($this->collection);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api\Feedback;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PostCollection extends ResourceCollection
+class FeedbackCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,6 @@ class PostCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return PostResource::collection($this->collection);
+        return FeedbackResource::collection($this->collection);
     }
 }

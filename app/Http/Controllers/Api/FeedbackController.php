@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FeedbackCollection;
+use App\Http\Resources\Api\Feedback\FeedbackCollection;
 use App\Models\Feedback;
 use App\Traits\ApiResponser;
 

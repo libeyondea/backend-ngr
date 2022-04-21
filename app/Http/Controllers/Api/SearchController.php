@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
-use App\Http\Resources\PostCollection;
+use App\Http\Resources\Api\Post\PostCollection;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\TagCollection;
+use App\Http\Resources\Api\Category\CategoryCollection;
+use App\Http\Resources\Api\Tag\TagCollection;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
