@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::get('/auth/me', [AuthController::class, 'me']);
 	Route::post('/auth/signout', [AuthController::class, 'signout']);
 
+	Route::post('/images/upload', [ImageController::class, 'upload']);
+
 	Route::get('/profile', [ProfileController::class, 'show']);
 	Route::put('/profile', [ProfileController::class, 'update']);
 
@@ -38,7 +40,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::put('/users/{id}', [UserController::class, 'update'])->middleware('role:owner');
 	Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('role:owner');
 
-	Route::post('/images/upload', [ImageController::class, 'upload']);
 
 	Route::get('/posts', [PostController::class, 'index']);
 	Route::get('/posts/{id}', [PostController::class, 'show']);
