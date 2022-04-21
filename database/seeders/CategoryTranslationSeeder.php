@@ -88,7 +88,7 @@ class CategoryTranslationSeeder extends Seeder
 			['category_id' => 55, 'language_id' => 1, 'name' => 'Định Cư Úc', 'slug' => 'dinh-cu-uc'],
 			['category_id' => 56, 'language_id' => 1, 'name' => 'Định Cư Canada', 'slug' => 'dinh-cu-canada'],
 
-			['category_id' => 57, 'language_id' => 1, 'name' => 'Học Bổng Du Học', 'slug' => 'hoc-bong-du-hoc'],
+			['category_id' => 57, 'language_id' => 1, 'name' => 'Học Bổng', 'slug' => 'hoc-bong-du-hoc'],
 			['category_id' => 58, 'language_id' => 1, 'name' => 'Học Bổng Canada', 'slug' => 'hong-bong-canada'],
 			['category_id' => 59, 'language_id' => 1, 'name' => 'Học Bổng Anh', 'slug' => 'hoc-bong-anh'],
 			['category_id' => 60, 'language_id' => 1, 'name' => 'Học Bổng Mỹ', 'slug' => 'hoc-bong-my'],
@@ -99,7 +99,7 @@ class CategoryTranslationSeeder extends Seeder
 			['category_id' => 65, 'language_id' => 1, 'name' => 'Học Bổng Hà Lan', 'slug' => 'hoc-bong-ha-lan'],
 			['category_id' => 66, 'language_id' => 1, 'name' => 'Học Bổng Thụy Sĩ', 'slug' => 'hoc-bong-thuy-si'],
 
-			['category_id' => 67, 'language_id' => 1, 'name' => 'Chương Trình Đào Tạo', 'slug' => 'chuong-trinh-dao-tao'],
+			['category_id' => 67, 'language_id' => 1, 'name' => 'Đào Tạo', 'slug' => 'chuong-trinh-dao-tao'],
 			['category_id' => 68, 'language_id' => 1, 'name' => 'Luyện Thi Tiếng Anh', 'slug' => 'luyen-thi-tieng-anh'],
 			['category_id' => 69, 'language_id' => 1, 'name' => 'Luyện IELTS Du Học', 'slug' => 'luyen-ielts-du-hoc'],
 			['category_id' => 70, 'language_id' => 1, 'name' => 'Luyện Anh Văn Phỏng Vấn Xin Visa Mỹ', 'slug' => 'luyen-anh-van-phong-van-xin-visa-my'],
@@ -110,13 +110,13 @@ class CategoryTranslationSeeder extends Seeder
 
 			['category_id' => 75, 'language_id' => 1, 'name' => 'Dịch Vụ', 'slug' => 'dich-vu'],
 			['category_id' => 76, 'language_id' => 1, 'name' => 'Khách Hàng', 'slug' => 'khach-hang'],
-			['category_id' => 77, 'language_id' => 1, 'name' => 'Đối Tác','slug' => 'doi-tac'],
-			['category_id' => 78, 'language_id' => 1, 'name' => 'Tuyển Dụng','slug' => 'tuyen-dung'],
-			['category_id' => 79, 'language_id' => 1, 'name' => 'Tin Tức','slug' => 'tin-tuc'],
+			['category_id' => 77, 'language_id' => 1, 'name' => 'Đối Tác', 'slug' => 'doi-tac'],
+			['category_id' => 78, 'language_id' => 1, 'name' => 'Tuyển Dụng', 'slug' => 'tuyen-dung'],
+			['category_id' => 79, 'language_id' => 1, 'name' => 'Tin Tức', 'slug' => 'tin-tuc'],
 
-			['category_id' => 80, 'language_id' => 1, 'name' => 'Đối Tác Nước Mỹ','slug' => 'doi-tac-nuoc-my'],
-			['category_id' => 81, 'language_id' => 1, 'name' => 'Đối Tác Nước Canada','slug' => 'doi-tac-nuoc-canada'],
-			['category_id' => 82, 'language_id' => 1, 'name' => 'Đối Tác Nước Singapore','slug' => 'doi-tac-nuoc-singapore'],
+			['category_id' => 80, 'language_id' => 1, 'name' => 'Đối Tác Nước Mỹ', 'slug' => 'doi-tac-nuoc-my'],
+			['category_id' => 81, 'language_id' => 1, 'name' => 'Đối Tác Nước Canada', 'slug' => 'doi-tac-nuoc-canada'],
+			['category_id' => 82, 'language_id' => 1, 'name' => 'Đối Tác Nước Singapore', 'slug' => 'doi-tac-nuoc-singapore'],
 		];
 
 		foreach ($categoryTranslations as $categoryTranslation) {

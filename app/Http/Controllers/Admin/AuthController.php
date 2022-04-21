@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SignupAuthRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Admin\User\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;

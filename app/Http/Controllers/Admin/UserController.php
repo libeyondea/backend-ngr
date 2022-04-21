@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\Admin\User\UserCollection;
+use App\Http\Resources\Admin\User\UserResource;
 use App\Models\User;
 use App\Traits\ApiResponser;
 

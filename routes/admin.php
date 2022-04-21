@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AdviseController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,4 +57,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::post('/tags', [TagController::class, 'store']);
 	Route::put('/tags/{id}', [TagController::class, 'update']);
 	Route::delete('/tags/{id}', [TagController::class, 'destroy']);
+
+	Route::get('/advises', [AdviseController::class, 'index']);
+	Route::delete('/advises/{id}', [AdviseController::class, 'destroy']);
+
+	Route::get('/feedback', [FeedbackController::class, 'index']);
+	Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
+	Route::post('/feedback', [FeedbackController::class, 'store']);
+	Route::put('/feedback/{id}', [FeedbackController::class, 'update']);
+	Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
 });
