@@ -8,6 +8,7 @@ use App\Http\Resources\Api\Post\PostResource;
 use App\Models\Category;
 use App\Models\CategoryTranslation;
 use App\Models\Post;
+use App\Models\PostTranslation;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
@@ -45,7 +46,9 @@ class PostController extends Controller
 
 	public function show($slug)
 	{
-		$post = Post::where('slug', $slug)->firstOrFail();
+		$post = Post::where('status', 'publish')->translation('postTranslations')->whereHas('postTranslations',  function ($q) use ($slug) {
+			$q->where('slug', $slug);
+		})->firstOrFail();
 		return $this->respondSuccess(new PostResource($post));
 	}
 }
