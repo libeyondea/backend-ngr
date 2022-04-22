@@ -85,8 +85,8 @@ class CategoryTranslationSeeder extends Seeder
 
 			['category_id' => 53, 'language_id' => 1, 'name' => 'Định Cư', 'slug' => 'dinh-cu'],
 			['category_id' => 54, 'language_id' => 1, 'name' => 'Định Cư Mỹ', 'slug' => 'dinh-cu-my'],
-			['category_id' => 55, 'language_id' => 1, 'name' => 'EB-5', 'slug' => 'eb-5'],
-			['category_id' => 56, 'language_id' => 1, 'name' => 'L1', 'slug' => 'l-1'],
+			['category_id' => 55, 'language_id' => 1, 'name' => 'Chương Trình EB-5', 'slug' => 'chuong-trinh-eb-5'],
+			['category_id' => 56, 'language_id' => 1, 'name' => 'Chương Trình L1', 'slug' => 'chuong-trinh-l-1'],
 			['category_id' => 57, 'language_id' => 1, 'name' => 'Bảo Lãnh Nhân Thân', 'slug' => 'bao-lanh-nhan-than'],
 			['category_id' => 58, 'language_id' => 1, 'name' => 'Dịch Vụ An Cư', 'slug' => 'dinh-vu-an-cu'],
 			['category_id' => 59, 'language_id' => 1, 'name' => 'Dự Án EB-5', 'slug' => 'du-an-eb-5'],
