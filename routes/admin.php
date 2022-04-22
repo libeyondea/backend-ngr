@@ -41,30 +41,30 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('role:owner');
 
 
-	Route::get('/posts', [PostController::class, 'index']);
-	Route::get('/posts/{id}', [PostController::class, 'show']);
-	Route::post('/posts', [PostController::class, 'store']);
-	Route::put('/posts/{id}', [PostController::class, 'update']);
-	Route::delete('/posts/{id}', [PostController::class, 'destroy']);
+	Route::get('/posts', [PostController::class, 'index'])->middleware('role:owner');
+	Route::get('/posts/{id}', [PostController::class, 'show'])->middleware('role:owner');
+	Route::post('/posts', [PostController::class, 'store'])->middleware('role:owner');
+	Route::put('/posts/{id}', [PostController::class, 'update'])->middleware('role:owner');
+	Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/categories', [CategoryController::class, 'index']);
-	Route::get('/categories/{id}', [CategoryController::class, 'show']);
-	Route::post('/categories', [CategoryController::class, 'store']);
-	Route::put('/categories/{id}', [CategoryController::class, 'update']);
-	Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+	Route::get('/categories', [CategoryController::class, 'index'])->middleware('role:owner');
+	Route::get('/categories/{id}', [CategoryController::class, 'show'])->middleware('role:owner');
+	Route::post('/categories', [CategoryController::class, 'store'])->middleware('role:owner');
+	Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('role:owner');
+	Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/tags', [TagController::class, 'index']);
-	Route::get('/tags/{id}', [TagController::class, 'show']);
-	Route::post('/tags', [TagController::class, 'store']);
-	Route::put('/tags/{id}', [TagController::class, 'update']);
-	Route::delete('/tags/{id}', [TagController::class, 'destroy']);
+	Route::get('/tags', [TagController::class, 'index'])->middleware('role:owner');
+	Route::get('/tags/{id}', [TagController::class, 'show'])->middleware('role:owner');
+	Route::post('/tags', [TagController::class, 'store'])->middleware('role:owner');
+	Route::put('/tags/{id}', [TagController::class, 'update'])->middleware('role:owner');
+	Route::delete('/tags/{id}', [TagController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/advises', [AdviseController::class, 'index']);
-	Route::delete('/advises/{id}', [AdviseController::class, 'destroy']);
+	Route::get('/advises', [AdviseController::class, 'index'])->middleware('role:owner');
+	Route::delete('/advises/{id}', [AdviseController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/feedback', [FeedbackController::class, 'index']);
-	Route::get('/feedback/{id}', [FeedbackController::class, 'show']);
-	Route::post('/feedback', [FeedbackController::class, 'store']);
-	Route::put('/feedback/{id}', [FeedbackController::class, 'update']);
-	Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy']);
+	Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('role:owner');
+	Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->middleware('role:owner');
+	Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('role:owner');
+	Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->middleware('role:owner');
+	Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->middleware('role:owner');
 });
