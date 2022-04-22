@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\Admin\Post;
 
-use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class PostTranslationResource extends JsonResource
 {
 	/**
 	 * Transform the resource into an array.
@@ -17,14 +16,14 @@ class PostResource extends JsonResource
 	{
 		return [
 			'id' => $this->id,
-			'translations' => new PostTranslationCollection($this->postTranslations),
-			'image_url' => $this->image_url,
-			'status' => $this->status,
+			'post_id' => $this->post_id,
+			'title' => $this->title,
+			'slug' => $this->slug,
+			'excerpt' => $this->excerpt,
+			'content' => $this->content,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'user' => new UserResource($this->user),
-			'tags' => new TagCollection($this->tags),
-			'categories' => new CategoryCollection(Category::ancestorsAndSelf($this->category_id)->toTree()),
+			'language' => $this->language,
 		];
 	}
 }
