@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\Admin\Post;
 
-use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+class CategoryTranslationResource extends JsonResource
 {
 	/**
 	 * Transform the resource into an array.
@@ -17,11 +16,12 @@ class CategoryResource extends JsonResource
 	{
 		return [
 			'id' => $this->id,
-			'parent_id' => $this->parent_id,
-			'translations' => new CategoryTranslationCollection($this->categoryTranslations),
+			'category_id' => $this->category_id,
+			'name' => $this->name,
+			'slug' => $this->slug,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
-			'children' => new CategoryCollection($this->children),
+			'language' => $this->language,
 		];
 	}
 }
