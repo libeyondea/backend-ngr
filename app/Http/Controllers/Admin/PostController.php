@@ -10,7 +10,6 @@ use App\Http\Resources\Admin\Post\PostResource;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostTag;
-use App\Models\PostTranslation;
 use App\Models\Tag;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -30,9 +29,7 @@ class PostController extends Controller
 		$posts = new Post();
 
 		if ($request->has('q')) {
-			$posts = $posts->whereHas('postTranslations', function ($q) use ($request) {
-				$q->where('title', 'like', '%' . $request->q . '%');
-			});
+			$posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
 		}
 
 		if ($request->has('status')) {
@@ -51,8 +48,8 @@ class PostController extends Controller
 
 		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
-				$descendantCategories = Category::where('slug', $request->category)->first();
-				$q->whereIn('slug', Category::descendantsAndSelf($descendantCategories ? $descendantCategories->id : null)->pluck('slug'));
+				$descendantCategory = Category::where('slug', $request->category)->first();
+				$q->whereIn('id', Category::descendantsOf($descendantCategory->id ?? null)->pluck('id'));
 			});
 		}
 
@@ -81,33 +78,10 @@ class PostController extends Controller
 	 */
 	public function store(StorePostRequest $request)
 	{
-		foreach ($request->translations as $key => $translation) {
-			if (PostTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['title'], '-'))->exists()) {
-				return $this->respondError(
-					'The given data was invalid.',
-					[
-						'translations.' . $key . '.slug' => ['The slug has already been taken.']
-
-					]
-				);
-			}
-		}
-
 		$postData = $request->merge([
 			'user_id' => auth()->user()->id,
 		])->all();
 		$post = Post::create($postData);
-
-		foreach ($request->translations as $translation) {
-			PostTranslation::create([
-				'post_id' => $post->id,
-				'language_id' => $translation['language_id'],
-				'title' => $translation['title'],
-				'slug' => Str::slug($translation['slug'] ?? $translation['title'], '-'),
-				'excerpt' => $translation['excerpt'],
-				'content' => $translation['content'],
-			]);
-		}
 
 		foreach ($request->tags as $tag) {
 			$tag = Tag::firstOrCreate([
@@ -133,33 +107,12 @@ class PostController extends Controller
 	 */
 	public function update(UpdatePostRequest $request, $id)
 	{
-		foreach ($request->translations as $key => $translation) {
-			if (PostTranslation::where('language_id', $translation['language_id'])->where('slug', Str::slug($translation['slug'] ?? $translation['title'], '-'))->where('post_id', '!=', $id)->exists()) {
-				return $this->respondError(
-					'The given data was invalid.',
-					[
-						'translations.' . $key . '.slug' => ['The slug has already been taken.']
 
-					]
-				);
-			}
-		}
-		
 		$postData = $request->merge([
 			'user_id' => auth()->user()->id,
 		])->all();
 		$post = Post::findOrFail($id);
 		$post->update($postData);
-
-		foreach ($request->translations as $translation) {
-			$postTranslation = PostTranslation::where('post_id', $post->id)->where('language_id', $translation['language_id'])->first();
-			$postTranslation->update([
-				'title' => $translation['title'],
-				'slug' => Str::slug($translation['slug'] ?? $translation['title'], '-'),
-				'excerpt' => $translation['excerpt'],
-				'content' => $translation['content'],
-			]);
-		}
 
 		$deletePostTag = PostTag::where('post_id', $post->id);
 		if ($deletePostTag->first()) {

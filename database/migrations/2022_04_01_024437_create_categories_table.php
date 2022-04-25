@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
 			$table->foreignId('parent_id')->nullable()->constrained('categories');
 			$table->unsignedInteger('_lft')->default(0);
 			$table->unsignedInteger('_rgt')->default(0);
+			$table->string('name');
+			$table->string('slug');
 			$table->timestamps();
 		});
 	}

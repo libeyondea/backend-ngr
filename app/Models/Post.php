@@ -11,6 +11,10 @@ class Post extends Model
 	use HasFactory, CustomScope;
 
 	protected $fillable = [
+		'title',
+		'slug',
+		'excerpt',
+		'content',
 		'image',
 		'status',
 		'category_id',
@@ -27,10 +31,10 @@ class Post extends Model
 		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
-	public function postTranslations()
+	/* public function postTranslations()
 	{
 		return $this->hasMany(PostTranslation::class, 'post_id', 'id');
-	}
+	} */
 
 	public function tags()
 	{
@@ -42,23 +46,23 @@ class Post extends Model
 		return $this->image ? config('app.img_url') . '/' . $this->image : config('app.img_url') . '/' . 'default-image.png';
 	}
 
-	public function getTitleAttribute()
+	/* public function getTitleAttribute()
 	{
-		return $this->postTranslations->first()->title ?? null;
+		return $this->translationTest('postTranslations', 'title');
 	}
 
 	public function getSlugAttribute()
 	{
-		return $this->postTranslations->first()->slug ?? null;
+		return $this->translationTest('postTranslations', 'slug');
 	}
 
 	public function getExcerptAttribute()
 	{
-		return $this->postTranslations->first()->excerpt ?? null;
+		return $this->translationTest('postTranslations', 'excerpt');
 	}
 
 	public function getContentAttribute()
 	{
-		return $this->postTranslations->first()->content ?? null;
-	}
+		return $this->translationTest('postTranslations', 'content');
+	} */
 }

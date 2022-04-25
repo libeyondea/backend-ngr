@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\CustomFormRequest;
+use Illuminate\Support\Str;
 
 class StorePostRequest extends FormRequest
 {
@@ -17,17 +18,22 @@ class StorePostRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'translations' => 'required|array|min:1|max:10',
-			'translations.*.title' => 'required|string|max:255',
-			'translations.*.slug' => 'nullable|string|max:255',
-			'translations.*.excerpt' => 'required|string|max:666',
-			'translations.*.content' => 'required|string|max:60000',
-			'translations.*.language_id' => 'required|integer',
-			'image' => 'required|string|max:255',
+			'title' => 'required|string|max:255',
+			'slug' => 'required|string|max:255|unique:posts',
+			'excerpt' => 'required|string|max:666',
+			'content' => 'required|string|max:60000',
+			'image' => 'nullable|string|max:255',
 			'status' => 'required|string|in:publish,pending,draft,trash',
 			'category_id' => 'required|integer',
 			'tags' => 'required|array|min:1|max:66',
-			'tags.*.name' => 'required|string|max:66'
+			'tags.*.name' => 'required|string|max:66',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'slug' => Str::slug($this->slug ?? $this->title, '-'),
+		]);
 	}
 }

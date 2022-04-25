@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\Post\PostCollection;
 use App\Http\Resources\Api\Post\PostResource;
 use App\Models\Category;
-use App\Models\CategoryTranslation;
 use App\Models\Post;
-use App\Models\PostTranslation;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
@@ -23,7 +21,7 @@ class PostController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$posts = Post::where('status', 'publish')->translation('postTranslations');
+		$posts = Post::where('status', 'publish');
 
 		if ($request->has('tag')) {
 			$posts = $posts->whereHas('tags', function ($q) use ($request) {
@@ -33,9 +31,8 @@ class PostController extends Controller
 
 		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
-				$categoryTranslation = CategoryTranslation::where('slug', $request->category)->first();
-				$descendantCategory = Category::where('id', $categoryTranslation->category_id)->translationAndFilter('categoryTranslations')->first();
-				$q->whereIn('id', Category::descendantsOf($descendantCategory ? $descendantCategory->id : null)->pluck('id'));
+				$descendantCategory = Category::where('slug', $request->category)->first();
+				$q->whereIn('id', Category::descendantsOf($descendantCategory->id ?? null)->pluck('id'));
 			});
 		}
 
@@ -46,9 +43,7 @@ class PostController extends Controller
 
 	public function show($slug)
 	{
-		$post = Post::where('status', 'publish')->translation('postTranslations')->whereHas('postTranslations',  function ($q) use ($slug) {
-			$q->where('slug', $slug);
-		})->firstOrFail();
+		$post = Post::where('status', 'publish')->where('slug', $slug)->firstOrFail();
 		return $this->respondSuccess(new PostResource($post));
 	}
 }

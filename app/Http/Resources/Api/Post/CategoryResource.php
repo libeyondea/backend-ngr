@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Api\Post;
 
-use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoryResource extends JsonResource
@@ -18,9 +17,9 @@ class CategoryResource extends JsonResource
 		return [
 			'id' => $this->id,
 			'parent_id' => $this->parent_id,
-			'translations' => $this->categoryTranslations,
-			/* 'name' => $this->name,
-			'slug' => $this->slug, */
+			/*'translations' => $this->categoryTranslations, */
+			'name' => $this->name,
+			'slug' => $this->slug,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
 			'children' => new CategoryCollection($this->children),

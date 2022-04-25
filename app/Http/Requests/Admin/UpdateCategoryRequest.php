@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Traits\CustomFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class UpdateCategoryRequest extends FormRequest
 {
@@ -17,11 +18,16 @@ class UpdateCategoryRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'translations' => 'required|array|min:1|max:10',
-			'translations.*.name' => 'required|string|max:255',
-			'translations.*.slug' => 'nullable|string|max:255',
-			'translations.*.language_id' => 'required|integer',
+			'name' => 'required|string|max:255',
+			'slug' => 'required|string|max:255|unique:categories,slug,' . $this->id,
 			'parent_id' => 'nullable|integer',
 		];
+	}
+
+	protected function prepareForValidation()
+	{
+		$this->merge([
+			'slug' => Str::slug($this->slug ?? $this->name, '-'),
+		]);
 	}
 }

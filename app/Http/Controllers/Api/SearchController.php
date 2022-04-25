@@ -26,17 +26,17 @@ class SearchController extends Controller
 		$type = $request->get('type', $type);
 
 		if ($type == 'post') {
-			$models = Post::translationAndFilter('postTranslations', ['title', 'slug', 'excerpt']);
+			$models = Post::where('title', 'LIKE', '%' . $request->q . '%');
 			$modelsCount = $models->get()->count();
 			$models = $models->pagination();
 			$resources = new PostCollection($models);
 		} elseif ($type == 'category') {
-			$models = Category::translationAndFilter('categoryTranslations', ['name', 'slug']);
+			$models = Category::where('name', 'LIKE', '%' . $request->q . '%');
 			$modelsCount = $models->get()->count();
 			$models = $models->pagination();
 			$resources = new CategoryCollection($models);
 		} elseif ($type == 'tag') {
-			$models = Tag::where('name', 'like', '%' . $request->q . '%');
+			$models = Tag::where('name', 'v', '%' . $request->q . '%');
 			$modelsCount = $models->get()->count();
 			$models = $models->pagination();
 			$resources = new TagCollection($models);

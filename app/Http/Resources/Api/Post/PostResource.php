@@ -17,18 +17,18 @@ class PostResource extends JsonResource
 	{
 		return [
 			'id' => $this->id,
-			'translations' => $this->postTranslations,
-			/* 'title' => $this->title,
+			/* 'translations' => $this->postTranslations, */
+			'title' => $this->title,
 			'slug' => $this->slug,
 			'excerpt' => $this->excerpt,
-			'content' => $this->content, */
+			'content' => $this->content,
 			'image_url' => $this->image_url,
 			'status' => $this->status,
 			'created_at' => $this->created_at,
 			'updated_at' => $this->updated_at,
 			'user' => new UserResource($this->user),
 			'tags' => new TagCollection($this->tags),
-			'categories' => new CategoryCollection(Category::translation('categoryTranslations')->ancestorsAndSelf($this->category_id)->toTree()),
+			'categories' => new CategoryCollection(Category::ancestorsAndSelf($this->category_id)->toTree()),
 		];
 	}
 }

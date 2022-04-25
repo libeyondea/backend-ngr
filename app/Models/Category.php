@@ -13,6 +13,8 @@ class Category extends Model
 
 	protected $fillable = [
 		'parent_id',
+		'name',
+		'slug',
 	];
 
 	public function posts()
@@ -20,10 +22,10 @@ class Category extends Model
 		return $this->hasMany(Post::class, 'category_id', 'id');
 	}
 
-	public function categoryTranslations()
+	/* public function categoryTranslations()
 	{
 		return $this->hasMany(CategoryTranslation::class, 'category_id', 'id');
-	}
+	} */
 
 	public function parent()
 	{
@@ -35,13 +37,13 @@ class Category extends Model
 		return $this->hasMany(Category::class, 'parent_id', 'id');
 	}
 
-	public function getNameAttribute()
+	/* public function getNameAttribute()
 	{
-		return $this->categoryTranslations->first()->name ?? null;
+		return $this->translationTest('categoryTranslations', 'name');
 	}
 
 	public function getSlugAttribute()
 	{
-		return $this->categoryTranslations->first()->slug ?? null;
-	}
+		return $this->translationTest('categoryTranslations', 'slug');
+	} */
 }

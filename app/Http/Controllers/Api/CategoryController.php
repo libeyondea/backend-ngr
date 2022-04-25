@@ -18,7 +18,7 @@ class CategoryController extends Controller
 	 */
 	public function index()
 	{
-		$categories = Category::translation('categoryTranslations');
+		$categories = new Category();
 		$categoriesCount = $categories->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
 		return $this->respondSuccessWithPagination(new CategoryCollection($categories), $categoriesCount);

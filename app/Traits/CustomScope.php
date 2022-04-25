@@ -29,18 +29,39 @@ trait CustomScope
 		return $translation;
 	}
 
-	public function scopeTranslation($query, $relation)
+	public function scopeTranslation($query, $relation, $relationMore = [])
 	{
 		$language = new Language();
 		if (request()->lang == 'en') {
-			$language = $language->where('code', 'en')->firstOrFail();
+			$translation = $query->withAndWhereHas($relation, function ($q) use ($language, $relationMore) {
+				$q->where('language_id', $language->where('code', 'en')->firstOrFail()->id)->where($relationMore);;
+			});
+		} elseif (request()->lang == '*') {
+			$translation = $query->withAndWhereHas($relation, function ($q) use ($relationMore) {
+				$q->where($relationMore);
+			});
 		} else {
-			$language = $language->where('code', 'vi')->firstOrFail();
+			$translation = $query->withAndWhereHas($relation, function ($q) use ($language, $relationMore) {
+				$q->where('language_id', $language->where('code', 'vi')->firstOrFail()->id)->where($relationMore);
+			});
 		}
 
-		$translation = $query->withAndWhereHas($relation, function ($q) use ($language) {
-			$q->where('language_id', $language->id);
-		});
+		return $translation;
+	}
+
+	public function translationTest($relation, $key)
+	{
+		$language = new Language();
+		if (request()->lang == 'en') {
+			$translation = $this->$relation->where('language_id', $language->where('code', 'en')->firstOrFail()->id)->first()->$key ?? null;
+		} elseif (request()->lang == '*') {
+			$translation = [
+				'vi' => $this->$relation->where('language_id', $language->where('code', 'vi')->firstOrFail()->id)->first()->$key ?? null,
+				'en' => $this->$relation->where('language_id', $language->where('code', 'en')->firstOrFail()->id)->first()->$key ?? null,
+			];
+		} else {
+			$translation = $this->$relation->where('language_id', $language->where('code', 'vi')->firstOrFail()->id)->first()->$key ?? null;
+		}
 
 		return $translation;
 	}
