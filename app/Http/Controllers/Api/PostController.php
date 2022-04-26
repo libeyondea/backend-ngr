@@ -32,7 +32,7 @@ class PostController extends Controller
 		if ($request->has('category')) {
 			$posts = $posts->whereHas('category', function ($q) use ($request) {
 				$descendantCategory = Category::where('slug', $request->category)->first();
-				$q->whereIn('id', Category::descendantsOf($descendantCategory->id ?? null)->pluck('id'));
+				$q->whereIn('id', Category::descendantsAndSelf($descendantCategory->id ?? null)->pluck('id'));
 			});
 		}
 
