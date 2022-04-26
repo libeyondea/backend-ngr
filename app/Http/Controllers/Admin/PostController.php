@@ -115,7 +115,7 @@ class PostController extends Controller
 		$post->update($postData);
 
 		$deletePostTag = PostTag::where('post_id', $post->id);
-		if ($deletePostTag->first()) {
+		if ($deletePostTag->exists()) {
 			$deletePostTag->delete();
 		}
 
