@@ -87,7 +87,7 @@ class CategorySeeder extends Seeder
 			['id' => 70, 'parent_id' => 68, 'name' => 'Dự Án British Columbia', 'slug' => 'du-an-british-columbia'],
 			['id' => 71, 'parent_id' => 68, 'name' => 'Tìm Hiểu Về Canada', 'slug' => 'tim-hieu-ve-canada'],
 			['id' => 72, 'parent_id' => NULL, 'name' => 'Học Bổng', 'slug' => 'hoc-bong'],
-			['id' => 73, 'parent_id' => 72, 'name' => 'Học Bổng Canada', 'slug' => 'hong-bong-canada'],
+			['id' => 73, 'parent_id' => 72, 'name' => 'Học Bổng Canada', 'slug' => 'hoc-bong-canada'],
 			['id' => 74, 'parent_id' => 72, 'name' => 'Học Bổng Anh', 'slug' => 'hoc-bong-anh'],
 			['id' => 75, 'parent_id' => 72, 'name' => 'Học Bổng Mỹ', 'slug' => 'hoc-bong-my'],
 			['id' => 76, 'parent_id' => 72, 'name' => 'Học Bổng Úc', 'slug' => 'hoc-bong-uc'],

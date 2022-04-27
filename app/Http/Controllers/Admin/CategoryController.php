@@ -23,7 +23,7 @@ class CategoryController extends Controller
 		if ($request->has('q')) {
 			$categories = $categories->where('name', 'LIKE', '%' . $request->q . '%');
 		}
-		$categoriesCount = $categories->get()->count();
+		$categoriesCount = $categories->whereNull('parent_id')->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
 		return $this->respondSuccessWithPagination(new CategoryCollection($categories), $categoriesCount);
 	}
