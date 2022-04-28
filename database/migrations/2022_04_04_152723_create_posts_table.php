@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
 			$table->foreignId('category_id')->constrained('categories');
 			$table->string('title');
 			$table->string('slug');
-			$table->string('excerpt', 666);
+			$table->string('excerpt', 666)->nullable();
 			$table->text('content');
 			$table->string('image')->nullable();
 			$table->enum('status', ['publish', 'pending', 'draft', 'trash'])->default('draft');

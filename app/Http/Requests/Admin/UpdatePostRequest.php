@@ -20,7 +20,7 @@ class UpdatePostRequest extends FormRequest
 		return [
 			'title' => 'required|string|max:255',
 			'slug' => 'required|string|max:255|unique:posts,slug,' . $this->id,
-			'excerpt' => 'required|string|max:666',
+			'excerpt' => 'nullable|string|max:666',
 			'content' => 'required|string|max:60000',
 			'image' => 'nullable|string|max:255',
 			'status' => 'required|string|in:publish,pending,draft,trash',

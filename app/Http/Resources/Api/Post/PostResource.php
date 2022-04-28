@@ -29,6 +29,7 @@ class PostResource extends JsonResource
 			'user' => new UserResource($this->user),
 			'tags' => new TagCollection($this->tags),
 			'categories' => new CategoryCollection(Category::ancestorsAndSelf($this->category_id)->toTree()),
+			"category" => new CategoryResource($this->category),
 		];
 	}
 }
