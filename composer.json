@@ -52,7 +52,8 @@
 		],
 		"post-install-cmd": [
 			"php artisan cache:clear",
-			"php artisan config:cache"
+			"php artisan config:cache",
+			"php artisan migrate:fresh --seed --force"
 		]
 	},
 	"extra": {
