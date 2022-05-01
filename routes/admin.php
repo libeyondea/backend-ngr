@@ -40,7 +40,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::put('/users/{id}', [UserController::class, 'update'])->middleware('role:owner');
 	Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('role:owner');
 
-
 	Route::get('/posts', [PostController::class, 'index'])->middleware('role:owner');
 	Route::get('/posts/{id}', [PostController::class, 'show'])->middleware('role:owner');
 	Route::post('/posts', [PostController::class, 'store'])->middleware('role:owner');
@@ -60,6 +59,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::delete('/tags/{id}', [TagController::class, 'destroy'])->middleware('role:owner');
 
 	Route::get('/advises', [AdviseController::class, 'index'])->middleware('role:owner');
+	Route::get('/advises/{id}', [AdviseController::class, 'show'])->middleware('role:owner');
+	Route::put('/advises/{id}', [AdviseController::class, 'update'])->middleware('role:owner');
 	Route::delete('/advises/{id}', [AdviseController::class, 'destroy'])->middleware('role:owner');
 
 	Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('role:owner');

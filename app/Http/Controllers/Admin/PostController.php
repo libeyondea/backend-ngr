@@ -29,7 +29,9 @@ class PostController extends Controller
 		$posts = new Post();
 
 		if ($request->has('q')) {
-			$posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
+			$posts = $posts->where('title', 'LIKE', '%' . $request->q . '%')
+				->orWhere('slug', 'LIKE', '%' . $request->q . '%')
+				->orWhere('excerpt', 'LIKE', '%' . $request->q . '%');
 		}
 
 		if ($request->has('status')) {

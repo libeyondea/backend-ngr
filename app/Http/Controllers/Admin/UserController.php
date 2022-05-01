@@ -9,6 +9,8 @@ use App\Http\Resources\Admin\User\UserCollection;
 use App\Http\Resources\Admin\User\UserResource;
 use App\Models\User;
 use App\Traits\ApiResponser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -19,9 +21,15 @@ class UserController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 		$users = new User();
+		if ($request->has('q')) {
+			$users = $users->select('*', DB::Raw("CONCAT(last_name, ' ', first_name) AS full_name"))
+				->where('full_name', 'LIKE', '%' . $request->q . '%')
+				->orWhere('user_name', 'LIKE', '%' . $request->q . '%')
+				->orWhere('email', 'LIKE', '%' . $request->q . '%');
+		}
 		$usersCount = $users->get()->count();
 		$users = $users->pagination();
 		return $this->respondSuccessWithPagination(new UserCollection($users), $usersCount);

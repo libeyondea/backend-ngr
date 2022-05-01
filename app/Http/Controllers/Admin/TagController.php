@@ -20,7 +20,8 @@ class TagController extends Controller
 	{
 		$tags = new Tag();
 		if ($request->has('q')) {
-			$tags = $tags->where('name', 'like', '%' . $request->q . '%');
+			$tags = $tags->where('name', 'LIKE', '%' . $request->q . '%')
+				->orWhere('slug', 'LIKE', '%' . $request->q . '%');
 		}
 		$tagsCount = $tags->get()->count();
 		$tags = $tags->pagination();
@@ -42,17 +43,17 @@ class TagController extends Controller
 		return $this->respondSuccess(new TagResource($tag));
 	}
 
-    public function update(UpdateTagRequest $request, $id)
-    {
-        $tagData = $request->merge([
-            'slug' => Tag::where('slug', Str::slug($request->name, '-'))->where('id', '!=', $id)->exists() ? Str::slug($request->name, '-') . '-' .  Str::lower(Str::random(6)) : Str::slug($request->name, '-'),
-        ])->all();
+	public function update(UpdateTagRequest $request, $id)
+	{
+		$tagData = $request->merge([
+			'slug' => Tag::where('slug', Str::slug($request->name, '-'))->where('id', '!=', $id)->exists() ? Str::slug($request->name, '-') . '-' .  Str::lower(Str::random(6)) : Str::slug($request->name, '-'),
+		])->all();
 		$tag = Tag::findOrFail($id);
-        $tag->update($tagData);
-        return $this->respondSuccess(new TagResource($tag));
-    }
+		$tag->update($tagData);
+		return $this->respondSuccess(new TagResource($tag));
+	}
 
-    public function destroy($id)
+	public function destroy($id)
 	{
 		$tag = Tag::findOrFail($id);
 		$tag->delete();

@@ -15,4 +15,9 @@ class Feedback extends Model
 		'avatar',
 		'content',
 	];
+
+	public function getAvatarUrlAttribute()
+	{
+		return $this->avatar ? config('app.img_url') . '/' . $this->avatar : config('app.img_url') . '/' . 'default-avatar.png';
+	}
 }

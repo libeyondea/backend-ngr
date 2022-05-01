@@ -9,14 +9,18 @@ use App\Http\Resources\Admin\Feedback\FeedbackCollection;
 use App\Http\Resources\Admin\Feedback\FeedbackResource;
 use App\Models\Feedback;
 use App\Traits\ApiResponser;
+use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
 	use ApiResponser;
 
-	public function index()
+	public function index(Request $request)
 	{
 		$feedback = new Feedback();
+		if ($request->has('q')) {
+			$feedback = $feedback->where('name', 'LIKE', '%' . $request->q . '%');
+		}
 		$feedbackCount = $feedback->get()->count();
 		$feedback = $feedback->pagination();
 		return $this->respondSuccessWithPagination(new FeedbackCollection($feedback), $feedbackCount);
@@ -47,6 +51,6 @@ class FeedbackController extends Controller
 	{
 		$feedback = Feedback::findOrFail($id);
 		$feedback->delete();
-		return $this->respondSuccess(new FeedbackResource($id));
+		return $this->respondSuccess(new FeedbackResource($feedback));
 	}
 }

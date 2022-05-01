@@ -21,7 +21,8 @@ class CategoryController extends Controller
 	{
 		$categories = new Category();
 		if ($request->has('q')) {
-			$categories = $categories->where('name', 'LIKE', '%' . $request->q . '%');
+			$categories = $categories->where('name', 'LIKE', '%' . $request->q . '%')
+				->orWhere('slug', 'LIKE', '%' . $request->q . '%');
 		}
 		$categoriesCount = $categories->whereNull('parent_id')->get()->count();
 		$categories = $categories->whereNull('parent_id')->pagination();
