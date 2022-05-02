@@ -23,17 +23,17 @@ class PostSeeder extends Seeder
 
 		foreach ($posts as $post) {
 			Post::create([
-				"id" => $post->id,
-				"user_id" => $post->user_id,
-				"category_id" => $post->category_id,
-				"title" => $post->title,
-				"slug" =>  Str::slug($post->title, '-') . '-' . Str::lower(Str::random(6)),
-				"excerpt" => $post->excerpt,
-				"content" => $post->content,
-				"image" => $post->image,
-				"status" => $post->status,
-				"created_at" => $post->created_at,
-				"updated_at" => $post->updated_at,
+				'id' => $post->id,
+				'user_id' => $post->user_id,
+				'category_id' => $post->category_id,
+				'title' => $post->title,
+				'slug' =>  Str::slug($post->title, '-') . '-' . Str::lower(Str::random(6)),
+				'excerpt' => $post->excerpt,
+				'content' => $post->content,
+				'image' => $post->image,
+				'status' => $post->status,
+				'created_at' => $post->created_at,
+				'updated_at' => $post->updated_at,
 			]);
 		}
 	}
