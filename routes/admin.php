@@ -40,32 +40,32 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::put('/users/{id}', [UserController::class, 'update'])->middleware('role:owner');
 	Route::delete('/users/{id}', [UserController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/posts', [PostController::class, 'index'])->middleware('role:owner');
-	Route::get('/posts/{id}', [PostController::class, 'show'])->middleware('role:owner');
-	Route::post('/posts', [PostController::class, 'store'])->middleware('role:owner');
-	Route::put('/posts/{id}', [PostController::class, 'update'])->middleware('role:owner');
+	Route::get('/posts', [PostController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
+	Route::get('/posts/{id}', [PostController::class, 'show'])->middleware('role:owner|admin|moderatorv');
+	Route::post('/posts', [PostController::class, 'store'])->middleware('role:owner|admin|moderator');
+	Route::put('/posts/{id}', [PostController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/posts/{id}', [PostController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/categories', [CategoryController::class, 'index'])->middleware('role:owner');
-	Route::get('/categories/{id}', [CategoryController::class, 'show'])->middleware('role:owner');
-	Route::post('/categories', [CategoryController::class, 'store'])->middleware('role:owner');
-	Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('role:owner');
+	Route::get('/categories', [CategoryController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
+	Route::get('/categories/{id}', [CategoryController::class, 'show'])->middleware('role:owner|admin|moderator|viewer');
+	Route::post('/categories', [CategoryController::class, 'store'])->middleware('role:owner|admin|moderator');
+	Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/tags', [TagController::class, 'index'])->middleware('role:owner');
-	Route::get('/tags/{id}', [TagController::class, 'show'])->middleware('role:owner');
-	Route::post('/tags', [TagController::class, 'store'])->middleware('role:owner');
-	Route::put('/tags/{id}', [TagController::class, 'update'])->middleware('role:owner');
+	Route::get('/tags', [TagController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
+	Route::get('/tags/{id}', [TagController::class, 'show'])->middleware('role:owner|admin|moderator|viewer');
+	Route::post('/tags', [TagController::class, 'store'])->middleware('role:owner|admin|moderator');
+	Route::put('/tags/{id}', [TagController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/tags/{id}', [TagController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/advises', [AdviseController::class, 'index'])->middleware('role:owner');
-	Route::get('/advises/{id}', [AdviseController::class, 'show'])->middleware('role:owner');
-	Route::put('/advises/{id}', [AdviseController::class, 'update'])->middleware('role:owner');
+	Route::get('/advises', [AdviseController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
+	Route::get('/advises/{id}', [AdviseController::class, 'show'])->middleware('role:owner|admin|moderator|viewer');
+	Route::put('/advises/{id}', [AdviseController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/advises/{id}', [AdviseController::class, 'destroy'])->middleware('role:owner');
 
-	Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('role:owner');
-	Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->middleware('role:owner');
-	Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('role:owner');
-	Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->middleware('role:owner');
+	Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
+	Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->middleware('role:|admin|moderator|viewer');
+	Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('role:owner|admin|moderator');
+	Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->middleware('role:owner');
 });

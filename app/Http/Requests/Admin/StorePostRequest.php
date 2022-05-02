@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\CustomFormRequest;
 use Illuminate\Support\Str;
@@ -32,8 +33,9 @@ class StorePostRequest extends FormRequest
 
 	protected function prepareForValidation()
 	{
+		$slug = Str::slug($this->slug ?? $this->title, '-');
 		$this->merge([
-			'slug' => Str::slug($this->slug ?? $this->title, '-'),
+			'slug' => Post::where('slug', $slug)->exists() ? $slug . '-' . Str::lower(Str::random(6)) : $slug,
 		]);
 	}
 }

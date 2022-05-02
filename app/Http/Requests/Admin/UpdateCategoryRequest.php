@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Category;
 use App\Traits\CustomFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
@@ -26,8 +27,9 @@ class UpdateCategoryRequest extends FormRequest
 
 	protected function prepareForValidation()
 	{
+		$slug = Str::slug($this->slug ?? $this->name, '-');
 		$this->merge([
-			'slug' => Str::slug($this->slug ?? $this->name, '-'),
+			'slug' => Category::where('slug', $slug)->where('id', '!=', $this->id)->exists() ? $slug . '-' . Str::lower(Str::random(6)) : $slug,
 		]);
 	}
 }
