@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
 	{
 		/* Post::factory(50)->create(); */
 
-		$json = Storage::get('posts.json');
+		$json = Storage::disk('public')->get('posts.json');
 		$posts = json_decode($json);
 
 		foreach ($posts as $post) {
