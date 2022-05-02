@@ -24,6 +24,9 @@ class ImageController extends Controller
 			$image = Str::random(66) . '.' . $request->file('image')->extension();
 			Storage::disk('img')->put($image, file_get_contents($request->file('image')));
 		}
-		return $this->respondSuccess(['image' => $image]);
+		return $this->respondSuccess([
+			'image' => $image,
+			'image_url' => config('app.img_url') . '/' . $image
+		]);
 	}
 }
