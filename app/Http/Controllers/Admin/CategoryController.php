@@ -10,7 +10,6 @@ use App\Http\Resources\Admin\Category\CategoryCollection;
 use App\Http\Resources\Admin\Category\CategoryResource;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
-use App\Models\CategoryTranslation;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
