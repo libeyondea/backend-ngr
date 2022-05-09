@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 	Route::delete('/advises/{id}', [AdviseController::class, 'destroy'])->middleware('role:owner');
 
 	Route::get('/feedback', [FeedbackController::class, 'index'])->middleware('role:owner|admin|moderator|viewer');
-	Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->middleware('role:|admin|moderator|viewer');
+	Route::get('/feedback/{id}', [FeedbackController::class, 'show'])->middleware('role:owner|admin|moderator|viewer');
 	Route::post('/feedback', [FeedbackController::class, 'store'])->middleware('role:owner|admin|moderator');
 	Route::put('/feedback/{id}', [FeedbackController::class, 'update'])->middleware('role:owner|admin');
 	Route::delete('/feedback/{id}', [FeedbackController::class, 'destroy'])->middleware('role:owner');
