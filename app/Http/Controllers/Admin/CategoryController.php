@@ -19,7 +19,7 @@ class CategoryController extends Controller
 	public function index(Request $request)
 	{
 		$categories = new Category();
-		if ($request->has('q')) {
+		if ($request->filled('q')) {
 			$categories = $categories->where('name', 'LIKE', '%' . $request->q . '%')
 				->orWhere('slug', 'LIKE', '%' . $request->q . '%');
 		}
